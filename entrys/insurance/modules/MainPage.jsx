@@ -91,9 +91,9 @@ var MainPage=React.createClass({
                             <li><a href="news.html">新闻资讯</a></li>
                             <li><a href="about-us.html">关于我们</a></li>
                             <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
-                                <a href="javascript:void(0)">业务模块</a>
+                                <a href="javascript:void(0)">个人中心</a>
                             </li>
-                            <li><span onClick={this.onClick}>我的订单</span></li>
+                            <li><span onClick={this.onClick}>业务咨询</span></li>
                         </ul>
                     </div>
 
