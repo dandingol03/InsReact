@@ -7,6 +7,10 @@ import '../../../css/insurancems/components/Business.css';
 
 
 var Business=React.createClass({
+    tabChange:function(tab){
+
+        this.setState({current:tab});
+    },
     initialData:function(){
         window.setTimeout(
             function(){
@@ -28,135 +32,219 @@ var Business=React.createClass({
 
         if(this.state.data!==undefined&&this.state.data!==null)
         {
-            let data=this.state.data;
-            mainContent=
-                <div className='container' style={{position:'static'}}>
-                    <div className='row' style={{padding:'10px'}}>
-                        <div className='main-content'>
-                            <div className="page-title">
-                                <h1>
-                                    {data.title}
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row invoice">
-                        <div className="col-md-6">
-                            <div className="well">
-                                <strong>我的信息</strong>
-                                <h3>
-                                    唐琬.
-                                </h3>
-                                <p>
-                                    民主西路1899号10楼<br/>城关区<br/>甘肃省兰州市<br/>0931-1234567<br/>johnsmith@gmail.com
-                                </p>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="well">
-                                <strong>卖家信息</strong>
-                                <h3>
-                                    苏雪林
-                                </h3>
-                                <p>
-                                    科技二路副66号万汇企业B座2楼<br/>高新区<br/>陕西省西安市<br/>029-88196870<br/>sharpandnimble@gmail.com
-                                </p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="row" style={{marginTop:'20px'}}>
-                        <div className="col-lg-12">
-                            <div className="widget-container fluid-height">
-                                <div className="widget-content padded clearfix">
-                                    <table className="table table-striped invoice-table">
-                                        <thead>
-                                        <tr>
-                                            <th width="50">
-                                                订单号
-                                            </th>
-                                            <th>
-                                                产品
-                                            </th>
-                                            <th>
-                                                时间
-                                            </th>
-                                            <th width="100">
-                                                保费
-                                            </th>
-                                        </tr></thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                C201610260001
-                                            </td>
-                                            <td>
-                                                第三者责任险
-                                            </td>
-                                            <td>
-                                                2016-11-02
-                                            </td>
-                                            <td>
-                                                ¥100
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                C201610260002
-                                            </td>
-                                            <td>
-                                               xxx险
-                                            </td>
-                                            <td>
-                                                2016-11-03
-                                            </td>
-                                            <td>
-                                                ¥100
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                C201610260003
-                                            </td>
-                                            <td>
-                                                xxx险
-                                            </td>
-                                            <td>
-                                                2016-11-04
-                                            </td>
-                                            <td>
-                                                ¥100
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                C201610260004
-                                            </td>
-                                            <td>
-                                                xxx险
-                                            </td>
-                                            <td>
-                                                2016-11-06
-                                            </td>
-                                            <td>
-                                                ¥100
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
+            switch (this.state.current) {
 
-                                        </tfoot>
-                                    </table>
+            case 'carOrder':
+                let data = this.state.data;
+                mainContent =
+                    <div className='container' style={{position:'static'}}>
+                        <div className='row' style={{padding:'10px'}}>
+                            <div className='main-content'>
+                                <div className="page-title">
+                                    <h1>
+                                        {data.title}
+                                    </h1>
                                 </div>
                             </div>
                         </div>
+                        <div className="row invoice">
+                            <div className="col-md-6">
+                                <div className="well">
+                                    <strong>我的信息</strong>
+
+                                    <h3>
+                                        唐琬.
+                                    </h3>
+
+                                    <p>
+                                        民主西路1899号10楼<br/>城关区<br/>甘肃省兰州市<br/>0931-1234567<br/>johnsmith@gmail.com
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="well">
+                                    <strong>卖家信息</strong>
+
+                                    <h3>
+                                        苏雪林
+                                    </h3>
+
+                                    <p>
+                                        科技二路副66号万汇企业B座2楼<br/>高新区<br/>陕西省西安市<br/>029-88196870<br/>sharpandnimble@gmail.com
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row" style={{marginTop:'20px'}}>
+                            <div className="col-lg-12">
+                                <div className="widget-container fluid-height">
+                                    <div className="widget-content padded clearfix">
+                                        <table className="table table-striped invoice-table">
+                                            <thead>
+                                            <tr>
+                                                <th width="50">
+                                                    订单号
+                                                </th>
+                                                <th>
+                                                    产品
+                                                </th>
+                                                <th>
+                                                    时间
+                                                </th>
+                                                <th width="100">
+                                                    保费
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    C201610260001
+                                                </td>
+                                                <td>
+                                                    第三者责任险
+                                                </td>
+                                                <td>
+                                                    2016-11-02
+                                                </td>
+                                                <td>
+                                                    ¥100
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    C201610260002
+                                                </td>
+                                                <td>
+                                                    xxx险
+                                                </td>
+                                                <td>
+                                                    2016-11-03
+                                                </td>
+                                                <td>
+                                                    ¥100
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    C201610260003
+                                                </td>
+                                                <td>
+                                                    xxx险
+                                                </td>
+                                                <td>
+                                                    2016-11-04
+                                                </td>
+                                                <td>
+                                                    ¥100
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    C201610260004
+                                                </td>
+                                                <td>
+                                                    xxx险
+                                                </td>
+                                                <td>
+                                                    2016-11-06
+                                                </td>
+                                                <td>
+                                                    ¥100
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row" style={{height:'60px'}}>
+                            <div className="col-lg-12"></div>
+                        </div>
+
+                    </div>;
+                break;
+            case 'score':
+
+                mainContent =
+                <div className='container' style={{position:'static'}}>
+
+                    <div className="nav-collapse">
+                    <ul className="nav " >
+
+                        <li className="dropdown">
+                        <a href="javascript:void(0)" className='all'>
+                            <span aria-hidden="true" >
+                            </span>积分明细
+                        </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" className='income'>
+                            <span aria-hidden="true" >
+                            </span>积分收入
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" className='used'>
+                            <span aria-hidden="true" >
+                            </span>积分支出
+                            </a>
+                        </li>
+                    </ul>
                     </div>
 
-                    <div className="row" style={{height:'60px'}}>
-                        <div className="col-lg-12"></div>
+                    <div>
+                        <div className="summary clearfix">
+                            <div className="item vaild">
+                                <span className="desc">可用积分</span>
+                                <span className="point">222</span>
+                            </div>
+                            <div className="item exchange">
+                                <a href="" target="_blank">兑换积分</a>
+                            </div>
+                        </div>
                     </div>
+                    <div className="detail">
+                        <div className="masthead clearfix">
 
+                            <span className="why">来源/用途</span>
+                            <span className="what">积分变化</span>
+                            <span className="when">日期</span>
+                            <span className="notes">备注</span>
+                        </div>
+                        <div>
+                            <ul class="item-list">
+                                <li className="item clearfix">
+                                    <div className="why">
+                                        <span className="orderNum">编号：7999999</span>
+                                    </div>
+                                    <div className="what">
+                                        <span className="">+88</span>
+                                    </div>
+                                    <div className="when" style={{width:'280px',textalign:'right'}}>
+                                       2016年10月25日
+                                    </div>
+                                    <div className="notes" style={{width:'280px',textalign:'right'}}>
+                                        吃屎屎
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>;
+
+
+
+                break;
+            }
+
         }else{
             //初始化内容详情
             this.initialData();
@@ -233,7 +321,7 @@ var Business=React.createClass({
 
                     </li>
 
-                    <li>
+                    <li onClick={this.tabChange.bind(this,'score')}>
                         <a href="javascript:void(0)" className='current'>
                             <span aria-hidden="true" >
                                 <i className='icon-credit-card'></i>

@@ -12,16 +12,17 @@ var ProxyQ = require('../../../components/proxy/ProxyQ');
 
 var MainPage=React.createClass({
     splitIntoBranch:function(url){
-        if(this.state.session!=true)
-        {
-            var loginModal = this.refs['loginModal'];
-            $(loginModal).modal('show');
-        }else{
+        //if(this.state.session!=true)
+        //{
+        //    var loginModal = this.refs['loginModal'];
+        //    $(loginModal).modal('show');
+        //}
+
             if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
             {
                 this.props.splitIntoBranch(url);
             }
-        }
+
     },
     onClick: function (ob) {
         var url="/bsuims/bsMainFrameInit.do";
