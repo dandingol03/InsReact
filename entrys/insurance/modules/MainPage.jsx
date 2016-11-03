@@ -12,15 +12,12 @@ var ProxyQ = require('../../../components/proxy/ProxyQ');
 
 var MainPage=React.createClass({
     splitIntoBranch:function(url){
-        if(this.state.session!=true)
-        {
+          if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
+          {
+              this.props.splitIntoBranch(url);
+          }
 
-        }else{
-            if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
-            {
-                this.props.splitIntoBranch(url);
-            }
-        }
+
     },
     onClick: function (ob) {
         var url="/bsuims/bsMainFrameInit.do";
