@@ -17,11 +17,11 @@ module.exports = {
         colors: true,
         historyApiFallback: true,
         inline: true,
-        port:3010,
+        port:3000,
         hot:true,
         proxy:{
             '/insurancems/*':{
-                target: 'http://localhost:8090/',
+                target: 'http://localhost:8080/',
                 secure: false
             }
         }
