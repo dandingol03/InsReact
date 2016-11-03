@@ -167,9 +167,9 @@ var Business=React.createClass({
                 <ul className="nav">
                     <li className='dropdown'>
                         <a href='#' data-toggle="dropdown" className='current'>
-                                             <span aria-hidden="true" >
-                                                <i className='icon-home'></i>
-                                            </span>控制台<b className="caret"></b>
+                             <span aria-hidden="true" >
+                                <i className='icon-home'></i>
+                            </span>控制台<b className="caret"></b>
                         </a>
 
                         <ul className="dropdown-menu">
@@ -232,11 +232,66 @@ var Business=React.createClass({
                         </ul>
 
                     </li>
+
+                    <li>
+                        <a href="javascript:void(0)" className='current'>
+                            <span aria-hidden="true" >
+                                <i className='icon-credit-card'></i>
+                            </span>积分
+                        </a>
+                    </li>
+
+                    <li className="dropdown">
+                        <a data-toggle="dropdown" href="#" className="current">
+                            <span aria-hidden="true" >
+                                <i className=' icon-github-alt'></i>
+                            </span>车险<b className="caret"></b>
+                        </a>
+                        <ul className="dropdown-menu">
+                            <li>
+                                <a href="javascript:void(0)" className="current">
+                                    历史订单
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">购买车险</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">估价列表</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li className="dropdown">
                         <a data-toggle="dropdown" href="#">
-                                            <span aria-hidden="true" >
-                                                <i className='icon-star-empty'></i>
-                                            </span>特色<b className="caret"></b>
+                            <span aria-hidden="true" >
+                                <i className='icon-coffee'></i>
+                            </span>寿险<b className="caret"></b>
+                        </a>
+                        <ul className="dropdown-menu">
+                            <li>
+                                <a href="javascript:void(0)">
+                                    历史订单
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    购买寿险
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javscript:void(0)">
+                                    估价列表
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li className="dropdown">
+                        <a data-toggle="dropdown" href="#">
+                            <span aria-hidden="true" >
+                                <i className='icon-list-ul'></i>
+                            </span>服务<b className="caret"></b>
                         </a>
                         <ul className="dropdown-menu">
                             <li>
@@ -245,76 +300,9 @@ var Business=React.createClass({
                             <li>
                                 <a href="components.html">组件</a>
                             </li>
-                            <li>
-                                <a href="widgets.html">小工具</a>
-                            </li>
-                            <li>
-                                <a href="typo.html">排版</a>
-                            </li>
-                            <li>
-                                <a href="grid.html">栅格</a>
-                            </li>
                         </ul>
                     </li>
-                    <li className="dropdown">
-                        <a data-toggle="dropdown" href="#">
-                                            <span aria-hidden="true">
-                                                <i className='icon-list-ul '></i>
-                                            </span>表单<b className="caret"></b>
-                        </a>
-                        <ul className="dropdown-menu">
-                            <li>
-                                <a href="form-components.html">
-                                    <span className="notifications label label-warning">新</span>
-                                    <p>
-                                        表格组件
-                                    </p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-advanced.html">高级形式</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li className="dropdown">
-                        <a data-toggle="dropdown" href="#">
-                                            <span aria-hidden="true">
-                                                <i className='icon-table'></i>
-                                            </span>表格<b className="caret"></b>
-                        </a>
-                        <ul className="dropdown-menu">
-                            <li>
-                                <a href="tables.html">基本表格</a>
-                            </li>
-                            <li>
-                                <a href="datatables.html">数据表格</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li className="dropdown">
-                        <a data-toggle="dropdown" href="#" className="current">
-                                            <span aria-hidden="true">
-                                                <i className='icon-file-alt'></i>
-                                            </span>订单<b className="caret"></b>
-                        </a>
-                        <ul className="dropdown-menu">
-                            <li>
-                                <a href="javascript:void(0)" className='current'>
-                                    <p>车险订单</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">
-                                    <p>服务订单</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <p>寿险订单</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+
                 </ul>
             </div>;
 

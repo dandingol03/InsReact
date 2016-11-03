@@ -14,7 +14,8 @@ var MainPage=React.createClass({
     splitIntoBranch:function(url){
         if(this.state.session!=true)
         {
-
+            var loginModal = this.refs['loginModal'];
+            $(loginModal).modal('show');
         }else{
             if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
             {
@@ -216,14 +217,36 @@ var MainPage=React.createClass({
 
 
 
-                <div className="modal fade bs-example-modal-lg"
+                <div className="modal fade bs-example-modal-sm login-container"
                      tabIndex="-1"
                      role="dialog"
                      aria-labelledby="myLargeModalLabel"
-                     aria-hidden="true">
-                    <div className="modal-dialog modal-lg">
-                        <div className="modal-content">
-                            ...
+                     aria-hidden="true"
+                     ref='loginModal'
+                    >
+                    <div className="modal-dialog modal-sm" style={{position:'absolute',top:'30%',width:'50%',marginLeft:'25%'}}>
+                        <div className="modal-content" style={{position:'relative',width:'100%',padding:'40px'}}>
+
+                            <div className="modal-body">
+
+                                <div className="form-group">
+                                    <input className="form-control" placeholder="用户名/手机号" type="text"/>
+                                </div>
+                                <div className="form-group" style={{position:'relative'}}>
+                                    <input className="form-control" placeholder="密码" type="text"/>
+                                    <span className='icon-right'><i className='icon-chevron-right'></i></span>
+                                </div>
+
+                                <div className="form-options clearfix">
+                                    <a className="pull-right" href="#">忘记密码了？</a>
+
+                                    <div className="text-left">
+                                        <span>自动登录</span>
+                                        <input type="checkbox"/>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
