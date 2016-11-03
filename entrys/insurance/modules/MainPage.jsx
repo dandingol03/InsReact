@@ -6,17 +6,42 @@ import { render } from 'react-dom';
 import Carousel from './Carousel.jsx';
 import News from '../../../components/basic/News.js';
 
-
 import '../../../css/insurancems/components/MainPage.css';
 var ProxyQ = require('../../../components/proxy/ProxyQ');
 
 var MainPage=React.createClass({
-    splitIntoBranch:function(url){
-          if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
-          {
-              this.props.splitIntoBranch(url);
-          }
+    splitIntoBranch:function(branchUrl){
 
+        if(this.props.session==undefined){
+
+            var url="/bsuims/insuranceReactPageDataRequest.do";
+            var params={
+                reactPageName:'qqqqqqPage',
+                reactActionName:'getBusinessModules'
+            };
+
+            ProxyQ.queryHandle(
+                'post',
+                url,
+                params,
+                null,
+                function(ob) {
+
+
+
+                }.bind(this),
+
+                function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            );
+        }
+
+
+        if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
+        {
+            this.props.splitIntoBranch(branchUrl);
+        }
 
     },
     onClick: function (ob) {
@@ -41,8 +66,7 @@ var MainPage=React.createClass({
         );
     },
     getInitialState:function(){
-
-        return ({session: false});
+        return ({session: true});
     },
     render:function(){
         return(

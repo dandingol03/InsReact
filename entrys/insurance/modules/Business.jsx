@@ -8,7 +8,10 @@ import '../../../css/insurancems/components/Business.css';
 
 var Business=React.createClass({
     initialData:function(){
-        window.setTimeout(
+
+
+
+        /**window.setTimeout(
             function(){
                 let data={
                     title:'车险订单',
@@ -16,7 +19,7 @@ var Business=React.createClass({
                 };
                 this.setState({data: data});
             }.bind(this)
-            ,300);
+            ,300);**/
     },
     getInitialState:function(){
         return ({current: 'carOrder',data:null});
