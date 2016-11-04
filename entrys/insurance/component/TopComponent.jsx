@@ -35,33 +35,36 @@ var TopComponent=React.createClass({
                         </div>
                     </div>
                     <div style={{width:'100%',minHeight:'400px',position:'relative'}}>
-                        <div className='grid' style={{right: '5%',position: 'absolute',top: '45%'}}>
+                        <div className='grid' style={{right: '10%',position: 'absolute',top: '70%'}}>
                             <ul style={{listStyle:'none'}}>
                                 <li style={{float:'left',marginRight:'20px'}}>
                                <span style={{display:'block',marginBottom:'20px'}}>
-                                   <img src={App.getResourceDeployPrefix()+"/images/iosQRCode.png"} />
+                                   <img src={App.getResourceDeployPrefix()+"/images/iosQRCode.jpg"} />
                                </span>
-                                    <button
-                                        type="button"
-                                        className=""
-                                        onClick={this.onClick}
-                                        style={{width:'100%'}}
-                                        >iPhone 下载
-                                    </button>
+                                    <div style={{textAlign:'center'}}>
+                                        <a
+                                            type="button"
+                                            className=""
+                                            href={App.getDownloadDeployDeployPrefix() + "/downloads/android-release-unaligned.apk"}
+                                            style={{width:'100%',fontSize:'18px'}}
+                                            >iPhone 下载
+                                        </a>
+                                    </div>
                                 </li>
 
                                 <li style={{float:'left'}}>
                                  <span style={{display:'block',marginBottom:'20px'}}>
-                                     <img src={App.getResourceDeployPrefix()+"/images/androidQRCode.png" }/>
+                                     <img src={App.getResourceDeployPrefix()+"/images/androidQRCode.jpg" }/>
                                  </span>
-                                    <button
-                                        type="button"
-                                        className=""
-                                        onClick={this.onClick}
-                                        style={{width:'100%'}}
-                                        >
-                                        Android 下载
-                                    </button>
+                                    <div style={{textAlign:'center'}}>
+                                        <a
+                                            type="button"
+                                            className=""
+                                            href={App.getDownloadDeployDeployPrefix() + "/downloads/android-release-unaligned.apk"}
+                                            style={{width:'100%',fontSize:'18px'}}
+                                            > Android 下载
+                                        </a>
+                                    </div>
                                 </li>
                             </ul>
                         </div>

@@ -6,12 +6,40 @@ import { render } from 'react-dom';
 import Carousel from './Carousel.jsx';
 import News from '../../../components/basic/News.js';
 
-
 import '../../../css/insurancems/components/MainPage.css';
 var ProxyQ = require('../../../components/proxy/ProxyQ');
 
 var MainPage=React.createClass({
+
+    validate:function(){
+        if(this.state.session!=true){
+
+            var url="/insurance/insuranceReactPageDataRequest.do";
+            var params={
+                reactPageName:'insurancePersonalCenterPage',
+                reactActionName:'getInsurancePersonalCenter'
+            };
+
+            ProxyQ.queryHandle(
+                'post',
+                url,
+                params,
+                null,
+                function(ob) {
+                    var loginModal = this.refs['loginModal'];
+                    $(loginModal).modal('hide');
+                }.bind(this),
+
+                function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            );
+        }
+
+    }
+    ,
     splitIntoBranch:function(url){
+
         //if(this.state.session!=true)
         //{
         //    var loginModal = this.refs['loginModal'];
@@ -22,6 +50,7 @@ var MainPage=React.createClass({
             {
                 this.props.splitIntoBranch(url);
             }
+
 
     },
     onClick: function (ob) {
@@ -46,7 +75,6 @@ var MainPage=React.createClass({
         );
     },
     getInitialState:function(){
-
         return ({session: false});
     },
     render:function(){
@@ -66,9 +94,9 @@ var MainPage=React.createClass({
                             <li><a href="news.html">新闻资讯</a></li>
                             <li><a href="about-us.html">关于我们</a></li>
                             <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
-                                <a href="javascript:void(0)">业务模块</a>
+                                <a href="javascript:void(0)">个人中心</a>
                             </li>
-                            <li><span onClick={this.onClick}>我的订单</span></li>
+                            <li><span onClick={this.onClick}>业务咨询</span></li>
                         </ul>
                     </div>
 
@@ -235,7 +263,7 @@ var MainPage=React.createClass({
                                 </div>
                                 <div className="form-group" style={{position:'relative'}}>
                                     <input className="form-control" placeholder="密码" type="text"/>
-                                    <span className='icon-right'><i className='icon-chevron-right'></i></span>
+                                    <span className='icon-right' onClick={this.validate} ><i className='icon-chevron-right'></i></span>
                                 </div>
 
                                 <div className="form-options clearfix">

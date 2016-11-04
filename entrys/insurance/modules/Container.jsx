@@ -30,7 +30,7 @@ var Container=React.createClass({
         switch (this.state.nav) {
             case 'home':
                 container=
-                    <div className='container'>
+                    <div className='container' style={{background:'url('+App.getResourceDeployPrefix()+'/images/background.png) no-repeat',backgroundSize:'100%'}}>
                         <div className="container" >
                             <TopComponent onMainPageEnter={this.onMainPageEnter}/>
                         </div>

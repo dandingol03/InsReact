@@ -12,6 +12,9 @@ var Business=React.createClass({
         this.setState({current:tab});
     },
     initialData:function(){
+
+
+
         window.setTimeout(
             function(){
                 let data={
