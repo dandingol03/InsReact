@@ -12,8 +12,8 @@ var Carousel=React.createClass({
         return (
             <div className='carousel' ref='carousel'>
                 <div className="nivoSlider theme-default">
-                    <img src={App.getResourceDeployPrefix()+"/images/carousel-1.jpg"} alt="" data-transition="slideInLeft" />
-                    <img src={App.getResourceDeployPrefix()+"/images/carousel-2.jpg"} alt="" data-transition="slideInLeft" />
+                    <img src={App.getResourceDeployPrefix()+"/images/carousel-1.png"} alt="" data-transition="slideInLeft" />
+                    <img src={App.getResourceDeployPrefix()+"/images/carousel-2.png"} alt="" data-transition="slideInLeft" />
                 </div>
             </div>);
     },
