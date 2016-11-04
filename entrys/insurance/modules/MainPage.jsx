@@ -35,7 +35,6 @@ var MainPage=React.createClass({
                 }.bind(this)
             );
         }
-
     }
     ,
     splitIntoBranch:function(url){
@@ -89,14 +88,15 @@ var MainPage=React.createClass({
                             <li><a href="current.html" className="active">首页</a></li>
                             <li><a href="product-center.html"> 产品中心</a></li>
                             <li><a href="news.html">新闻资讯</a></li>
-                            <li><a href="about-us.html">关于我们</a></li>
                             <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
                                 <a href="javascript:void(0)">个人中心</a>
                             </li>
-                            <li><span onClick={this.onClick}>业务咨询</span></li>
+                            <li className='cursor' onClick={this.onClick}>
+                                <a href="javascript:void(0)">业务咨询</a>
+                            </li>
+                            <li><a href="about-us.html">关于我们</a></li>
                         </ul>
                     </div>
-
                 </div>
 
                 <div style={{marginTop:'1px'}}>
@@ -106,7 +106,7 @@ var MainPage=React.createClass({
                 <div className='container' style={{position:'static'}}>
                     <div className='row'>
                         <div className="col-sm-4" style={{padding:'20px'}}>
-                            <div style={{textAlign:'center',padding:'10px',background:'#f2f9f7'}}>
+                            <div style={{textAlign:'center',padding:'10px',background:'url('+App.getResourceDeployPrefix()+'/images/background_1.png) no-repeat',backgroundSize:'100%'}}>
                                 <div style={{marginTop:'20px'}}>
                                     <h3>财产险</h3>
                                 </div>
@@ -167,7 +167,7 @@ var MainPage=React.createClass({
                 </div>
 
                 <div className='container' style={{position:'static',background:'#5e6d73',color: 'rgba(255, 255, 255, 0.7)'}}>
-                    <div className='row' style={{padding:'10px',textAlign:'center'}}>
+                    <div className='row' style={{padding:'10px',textAlign:'center',background:'url('+App.getResourceDeployPrefix()+'/images/problemBackground.png) no-repeat',backgroundSize:'100%'}}>
                         <div style={{marginTop:'30px'}}>
                             <h3>Contact us</h3>
                         </div>
