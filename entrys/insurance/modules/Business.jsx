@@ -203,9 +203,9 @@ var Business=React.createClass({
                     </ul>
                     </div>
 
-                    <div>
+                    <div className="content" style={{paddingtop:'8px'}}>
                         <div className="summary clearfix">
-                            <div className="item vaild">
+                            <div className="item valid">
                                 <span className="desc">可用积分</span>
                                 <span className="point">222</span>
                             </div>
@@ -215,27 +215,41 @@ var Business=React.createClass({
                         </div>
                     </div>
                     <div className="detail">
-                        <div className="masthead clearfix">
+                        <ul className="masthead clearfix">
 
-                            <span className="why">来源/用途</span>
-                            <span className="what">积分变化</span>
-                            <span className="when">日期</span>
-                            <span className="notes">备注</span>
-                        </div>
+                            <li className="why">来源/用途</li>
+                            <li className="what">积分变化</li>
+                            <li className="when">日期</li>
+                            <li className="notes">备注</li>
+                        </ul>
                         <div>
-                            <ul class="item-list">
+                            <ul className="item-list">
                                 <li className="item clearfix">
                                     <div className="why">
-                                        <span className="orderNum">编号：7999999</span>
+                                        <span className="orderNum" style={{padding:'10px'}}>编号：7999999</span>
                                     </div>
                                     <div className="what">
-                                        <span className="">+88</span>
+                                        <span >+88</span>
                                     </div>
-                                    <div className="when" style={{width:'280px',textalign:'right'}}>
+                                    <div className="when" style={{width:'25%',textalign:'center'}}>
                                        2016年10月25日
                                     </div>
-                                    <div className="notes" style={{width:'280px',textalign:'right'}}>
+                                    <div className="notes" style={{width:'25%',textalign:'center'}}>
                                         吃屎屎
+                                    </div>
+                                </li>
+                                <li className="item clearfix">
+                                    <div className="why">
+                                        <span className="orderNum" style={{padding:'10px'}}>编号：8999999</span>
+                                    </div>
+                                    <div className="what">
+                                        <span className="">+811</span>
+                                    </div>
+                                    <div className="when" style={{width:'25%',textalign:'center'}}>
+                                        2016年10月24日
+                                    </div>
+                                    <div className="notes" style={{width:'25%',textalign:'center'}}>
+                                        吃翔翔
                                     </div>
                                 </li>
                             </ul>
