@@ -38,15 +38,18 @@ var MainPage=React.createClass({
     }
     ,
     splitIntoBranch:function(url){
-       if(this.state.session!=true)
-        {
-            var loginModal = this.refs['loginModal'];
-            $(loginModal).modal('show');
-        }else {
-           if (this.props.splitIntoBranch !== undefined && this.props.splitIntoBranch !== null) {
-               this.props.splitIntoBranch(url);
-           }
-       }
+
+        //if(this.state.session!=true)
+        //{
+        //    var loginModal = this.refs['loginModal'];
+        //    $(loginModal).modal('show');
+        //}
+
+            if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
+            {
+                this.props.splitIntoBranch(url);
+            }
+
 
     },
     onClick: function (ob) {
