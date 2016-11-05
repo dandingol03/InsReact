@@ -256,9 +256,98 @@ var Business=React.createClass({
                         </div>
                     </div>
                 </div>;
+                break;
 
+            case 'lifeOrder':
 
+                mainContent =
+                <div className="row" style={{marginTop:'20px'}}>
+                    <div className="col-lg-12">
+                        <div className="widget-container fluid-height">
+                            <div className="widget-content padded clearfix">
+                                <table className="table table-striped invoice-table">
+                                    <thead>
+                                    <tr>
+                                        <th width="50">
+                                            订单号
+                                        </th>
+                                        <th>
+                                            产品
+                                        </th>
+                                        <th>
+                                            时间
+                                        </th>
+                                        <th width="100">
+                                            保费
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            C201610260001
+                                        </td>
+                                        <td>
+                                            第三者责任险
+                                        </td>
+                                        <td>
+                                            2016-11-02
+                                        </td>
+                                        <td>
+                                            ¥100
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            C201610260002
+                                        </td>
+                                        <td>
+                                            xxx险
+                                        </td>
+                                        <td>
+                                            2016-11-03
+                                        </td>
+                                        <td>
+                                            ¥100
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            C201610260003
+                                        </td>
+                                        <td>
+                                            xxx险
+                                        </td>
+                                        <td>
+                                            2016-11-04
+                                        </td>
+                                        <td>
+                                            ¥100
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            C201610260004
+                                        </td>
+                                        <td>
+                                            xxx险
+                                        </td>
+                                        <td>
+                                            2016-11-06
+                                        </td>
+                                        <td>
+                                            ¥100
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
 
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 break;
             }
 
@@ -346,7 +435,7 @@ var Business=React.createClass({
                         </a>
                     </li>
 
-                    <li className="dropdown">
+                    <li className="dropdown" onClick={this.tabChange.bind(this,'carOrder')}>
                         <a data-toggle="dropdown" href="#" className="current">
                             <span aria-hidden="true" >
                                 <i className=' icon-github-alt'></i>
@@ -367,7 +456,7 @@ var Business=React.createClass({
                         </ul>
                     </li>
 
-                    <li className="dropdown">
+                    <li className="dropdown" onClick={this.tabChange.bind(this,'lifeOrder')}>
                         <a data-toggle="dropdown" href="#">
                             <span aria-hidden="true" >
                                 <i className='icon-coffee'></i>
