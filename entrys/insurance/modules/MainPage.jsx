@@ -40,16 +40,13 @@ var MainPage=React.createClass({
     splitIntoBranch:function(url) {
 
 
-        if (this.state.session != true) {
-            var loginModal = this.refs['loginModal'];
-            $(loginModal).modal('show');
-        } else {
-            if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
-            {
-                this.props.splitIntoBranch(url);
-            }
-
-
+        // if (this.state.session != true) {
+        //     var loginModal = this.refs['loginModal'];
+        //     $(loginModal).modal('show');
+        // }
+        if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
+        {
+            this.props.splitIntoBranch(url);
         }
 
     },
@@ -93,7 +90,7 @@ var MainPage=React.createClass({
                             <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
                                 <a href="javascript:void(0)">个人中心</a>
                             </li>
-                            <li className='cursor' onClick={this.onClick}>
+                            <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
                                 <a href="javascript:void(0)">业务咨询</a>
                             </li>
                             <li><a href="about-us.html">关于我们</a></li>

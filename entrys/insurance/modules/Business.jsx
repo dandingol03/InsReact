@@ -36,45 +36,45 @@ var Business=React.createClass({
 
 
         //remote data
-        var url="/insurance/insuranceReactPageDataRequest.do";
-        var params={
-            reactPageName:'insurancePersonalCenterCarOrderPage',
-            reactActionName:'getInsuranceCarOrder'
-        };
-        ProxyQ.queryHandle(
-            'post',
-            url,
-            params,
-            null,
-            function(ob) {
-                var data=ob.data;
-                this.setState({data: data});
-            }.bind(this),
-
-            function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        );
+        // var url="/insurance/insuranceReactPageDataRequest.do";
+        // var params={
+        //     reactPageName:'insurancePersonalCenterCarOrderPage',
+        //     reactActionName:'getInsuranceCarOrder'
+        // };
+        // ProxyQ.queryHandle(
+        //     'post',
+        //     url,
+        //     params,
+        //     null,
+        //     function(ob) {
+        //         var data=ob.data;
+        //         this.setState({data: data});
+        //     }.bind(this),
+        //
+        //     function(xhr, status, err) {
+        //         console.error(this.props.url, status, err.toString());
+        //     }.bind(this)
+        // );
 
         // //local data
-        // window.setTimeout(function () {
-        //     this.setState({data:[
-        //         {orderNum:1,applyTime:'2016-10-05',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:2,applyTime:'2016-10-06',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:3,applyTime:'2016-10-07',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:4,applyTime:'2016-10-08',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:5,applyTime:'2016-10-09',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:6,applyTime:'2016-10-10',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:7,applyTime:'2016-10-11',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:8,applyTime:'2016-10-12',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:9,applyTime:'2016-10-13',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:10,applyTime:'2016-10-14',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:11,applyTime:'2016-10-15',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:12,applyTime:'2016-10-16',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:13,applyTime:'2016-10-17',product:'xxx险',insuranceFee:'$100'},
-        //         {orderNum:14,applyTime:'2016-10-18',product:'xxx险',insuranceFee:'$100'}
-        //         ]})
-        // }.bind(this), 300);
+        window.setTimeout(function () {
+            this.setState({data:[
+                {orderNum:1,applyTime:'2016-10-05',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:2,applyTime:'2016-10-06',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:3,applyTime:'2016-10-07',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:4,applyTime:'2016-10-08',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:5,applyTime:'2016-10-09',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:6,applyTime:'2016-10-10',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:7,applyTime:'2016-10-11',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:8,applyTime:'2016-10-12',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:9,applyTime:'2016-10-13',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:10,applyTime:'2016-10-14',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:11,applyTime:'2016-10-15',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:12,applyTime:'2016-10-16',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:13,applyTime:'2016-10-17',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:14,applyTime:'2016-10-18',product:'xxx险',insuranceFee:'$100'}
+                ]})
+        }.bind(this), 300);
 
     },
     getInitialState:function(){
@@ -83,7 +83,7 @@ var Business=React.createClass({
     render:function(){
 
 
-
+        let mainContent=null;
         if(this.state.data!==undefined&&this.state.data!==null&&this.state.data.length>0)
         {
 
@@ -112,7 +112,6 @@ var Business=React.createClass({
                 );
             });
 
-            let mainContent=null;
             let data = this.state.data;
             switch (this.state.current) {
 
