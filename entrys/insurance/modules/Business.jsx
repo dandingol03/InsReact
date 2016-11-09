@@ -6,29 +6,110 @@ import {render} from 'react-dom';
 import '../../../css/insurancems/components/Business.css';
 
 
+var ProxyQ = require('../../../components/proxy/ProxyQ');
+var Page = require('../../../components/page/Page');
+import Navigator from './Navigator';
+
+
+
+
 var Business=React.createClass({
+    paginationData:function (data,pageIndex) {
+        let capacity=data.length;
+        var slices=null;
+        Page.getInitialDataIndex(capacity,pageIndex,function(ob){
+             slices=data.slice(ob.begin,ob.end);
+        });
+        return slices;
+    },
+    pageCb:function(index){
+        this.setState({pageIndex: index});
+    },
     initialData:function(){
-        window.setTimeout(
-            function(){
-                let data={
-                    title:'车险订单',
-                    orders:[]
-                };
-                this.setState({data: data});
-            }.bind(this)
-            ,300);
+
+
+        //remote data
+        // var url="/insurance/insuranceReactPageDataRequest.do";
+        // var params={
+        //     reactPageName:'insurancePersonalCenterCarOrderPage',
+        //     reactActionName:'getInsuranceCarOrder'
+        // };
+        // ProxyQ.queryHandle(
+        //     'post',
+        //     url,
+        //     params,
+        //     null,
+        //     function(ob) {
+        //         var data=ob.data;
+        //         this.setState({data: data});
+        //     }.bind(this),
+        //
+        //     function(xhr, status, err) {
+        //         console.error(this.props.url, status, err.toString());
+        //     }.bind(this)
+        // );
+
+        //local data
+        window.setTimeout(function () {
+            this.setState({data:[
+                {orderNum:1,applyTime:'2016-10-05',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:2,applyTime:'2016-10-06',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:3,applyTime:'2016-10-07',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:4,applyTime:'2016-10-08',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:5,applyTime:'2016-10-09',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:6,applyTime:'2016-10-10',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:7,applyTime:'2016-10-11',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:8,applyTime:'2016-10-12',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:9,applyTime:'2016-10-13',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:10,applyTime:'2016-10-14',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:11,applyTime:'2016-10-15',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:12,applyTime:'2016-10-16',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:13,applyTime:'2016-10-17',product:'xxx险',insuranceFee:'$100'},
+                {orderNum:14,applyTime:'2016-10-18',product:'xxx险',insuranceFee:'$100'}
+                ]})
+        }.bind(this), 300);
+
+
     },
     getInitialState:function(){
-        return ({current: 'carOrder',data:null});
+        return ({current: 'carOrder',data:null,pageIndex:0});
     },
     render:function(){
 
 
         let mainContent=null;
 
-        if(this.state.data!==undefined&&this.state.data!==null)
+        if(this.state.data!==undefined&&this.state.data!==null&&this.state.data.length>0)
         {
-            let data=this.state.data;
+            var data=this.paginationData(this.state.data,this.state.pageIndex);
+
+
+            let orders=[];
+            let trs=[];
+            data.map(function (order, i) {
+                orders.push({orderNum: order.orderNum});
+                trs.push(
+                    <tr key={i}>
+                        <td>
+                            {order.orderNum}
+                        </td>
+                        <td>
+                            {order.product}
+                        </td>
+                        <td>
+                            {order.applyTime}
+                        </td>
+                        <td>
+                            {order.insuranceFee}
+                        </td>
+                    </tr>
+                );
+            });
+
+
+
+
+
             mainContent=
                 <div className='container' style={{position:'static'}}>
                     <div className='row' style={{padding:'10px'}}>
@@ -72,7 +153,7 @@ var Business=React.createClass({
                                     <table className="table table-striped invoice-table">
                                         <thead>
                                         <tr>
-                                            <th width="50">
+                                            <th width="100">
                                                 订单号
                                             </th>
                                             <th>
@@ -86,64 +167,18 @@ var Business=React.createClass({
                                             </th>
                                         </tr></thead>
                                         <tbody>
-                                        <tr>
-                                            <td>
-                                                C201610260001
-                                            </td>
-                                            <td>
-                                                第三者责任险
-                                            </td>
-                                            <td>
-                                                2016-11-02
-                                            </td>
-                                            <td>
-                                                ¥100
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                C201610260002
-                                            </td>
-                                            <td>
-                                               xxx险
-                                            </td>
-                                            <td>
-                                                2016-11-03
-                                            </td>
-                                            <td>
-                                                ¥100
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                C201610260003
-                                            </td>
-                                            <td>
-                                                xxx险
-                                            </td>
-                                            <td>
-                                                2016-11-04
-                                            </td>
-                                            <td>
-                                                ¥100
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                C201610260004
-                                            </td>
-                                            <td>
-                                                xxx险
-                                            </td>
-                                            <td>
-                                                2016-11-06
-                                            </td>
-                                            <td>
-                                                ¥100
-                                            </td>
-                                        </tr>
+                                        {trs}
                                         </tbody>
                                         <tfoot>
+                                        <tr>
+                                            <td colSpan={4}>
+                                                <Navigator
+                                                    capacity={20}
+                                                    pageCb={this.pageCb}
+                                                    paginate={Page}
+                                                />
+                                            </td>
+                                        </tr>
 
                                         </tfoot>
                                     </table>

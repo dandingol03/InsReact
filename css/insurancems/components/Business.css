@@ -159,3 +159,8 @@
 .table tfoot > tr > td {
     border-top: 0;
 }
+
+.pagination li{
+    float:left;
+    display: inline-block;
+}

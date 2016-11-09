@@ -11,17 +11,67 @@ import '../../../css/insurancems/components/MainPage.css';
 var ProxyQ = require('../../../components/proxy/ProxyQ');
 
 var MainPage=React.createClass({
+    validate:function(){
+
+        //node login
+        //var url="/login";
+        //var params={
+        //    username: 'YW01',
+        //    password: '1'
+        //};
+        //ProxyQ.queryNode.login(
+        //    null,
+        //    url,
+        //    params,
+        //    null,
+        //    function(res) {
+        //        var accessToken=res.access_token;
+        //        this.setState({session:true,accessToken: accessToken});
+        //        var loginModal = this.refs['loginModal'];
+        //        $(loginModal).modal('hide');
+        //    }.bind(this),
+        //    function(xhr, status, err) {
+        //        console.error(this.props.url, status, err.toString());
+        //    }.bind(this));
+
+        //tomcat login
+        var url="/bsuims/bsMainFrameInit.do";
+        var loginModal = this.refs['loginModal'];
+        var username=$(loginModal).find("input[name='username']").val();
+        var password=$(loginModal).find("input[name='password']").val();
+        var params={
+            login_strLoginName: username,
+            login_strPassword: password
+        };
+
+        ProxyQ.queryHandle(
+            'post',
+            url,
+            params,
+            null,
+            function(res) {
+                var json=res.data;
+                this.setState({session: true});
+                var loginModal = this.refs['loginModal'];
+                $(loginModal).modal('hide');
+                window.setTimeout(this.splitIntoBranch('business'), 300);
+            }.bind(this),
+            function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this));
+
+    },
     splitIntoBranch:function(url){
-        if(this.state.session!=true)
-        {
-            var loginModal = this.refs['loginModal'];
-            $(loginModal).modal('show');
-        }else{
+        // if(this.state.session!=true)
+        // {
+        //     var loginModal = this.refs['loginModal'];
+        //     $(loginModal).modal('show');
+        // }else{
             if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
             {
                 this.props.splitIntoBranch(url);
             }
-        }
+        //}
     },
     onClick: function (ob) {
         var url="/bsuims/bsMainFrameInit.do";
@@ -38,15 +88,13 @@ var MainPage=React.createClass({
             function(ob) {
 
             }.bind(this),
-
             function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        );
+            }.bind(this));
     },
     getInitialState:function(){
 
-        return ({session: false});
+        return ({session: false,accessToken:null});
     },
     render:function(){
         return(
@@ -230,11 +278,13 @@ var MainPage=React.createClass({
                             <div className="modal-body">
 
                                 <div className="form-group">
-                                    <input className="form-control" placeholder="用户名/手机号" type="text"/>
+                                    <input name="username" className="form-control" placeholder="用户名/手机号" type="text"/>
                                 </div>
                                 <div className="form-group" style={{position:'relative'}}>
-                                    <input className="form-control" placeholder="密码" type="text"/>
-                                    <span className='icon-right'><i className='icon-chevron-right'></i></span>
+                                    <input name="password" className="form-control" placeholder="密码" type="text"/>
+                                    <span className='icon-right' onClick={this.validate}>
+                                        <i className='icon-chevron-right'></i>
+                                    </span>
                                 </div>
 
                                 <div className="form-options clearfix">
