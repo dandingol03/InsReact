@@ -6,72 +6,52 @@ import { render } from 'react-dom';
 import Carousel from './Carousel.jsx';
 import News from '../../../components/basic/News.js';
 
-
 import '../../../css/insurancems/components/MainPage.css';
 var ProxyQ = require('../../../components/proxy/ProxyQ');
 
 var MainPage=React.createClass({
+
     validate:function(){
+        if(this.state.session!=true){
 
-        //node login
-        //var url="/login";
-        //var params={
-        //    username: 'YW01',
-        //    password: '1'
-        //};
-        //ProxyQ.queryNode.login(
-        //    null,
-        //    url,
-        //    params,
-        //    null,
-        //    function(res) {
-        //        var accessToken=res.access_token;
-        //        this.setState({session:true,accessToken: accessToken});
-        //        var loginModal = this.refs['loginModal'];
-        //        $(loginModal).modal('hide');
-        //    }.bind(this),
-        //    function(xhr, status, err) {
-        //        console.error(this.props.url, status, err.toString());
-        //    }.bind(this));
+            var url="/insurance/insuranceReactPageDataRequest.do";
+            var params={
+                reactPageName:'insurancePersonalCenterPage',
+                reactActionName:'getInsurancePersonalCenter'
+            };
 
-        //tomcat login
-        var url="/bsuims/bsMainFrameInit.do";
-        var loginModal = this.refs['loginModal'];
-        var username=$(loginModal).find("input[name='username']").val();
-        var password=$(loginModal).find("input[name='password']").val();
-        var params={
-            login_strLoginName: username,
-            login_strPassword: password
-        };
+            ProxyQ.queryHandle(
+                'post',
+                url,
+                params,
+                null,
+                function(ob) {
+                    var loginModal = this.refs['loginModal'];
+                    $(loginModal).modal('hide');
+                }.bind(this),
 
-        ProxyQ.queryHandle(
-            'post',
-            url,
-            params,
-            null,
-            function(res) {
-                var json=res.data;
-                this.setState({session: true});
-                var loginModal = this.refs['loginModal'];
-                $(loginModal).modal('hide');
-                window.setTimeout(this.splitIntoBranch('business'), 300);
-            }.bind(this),
-            function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this));
+                function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                }.bind(this)
+            );
+        }
+    }
+    ,
+    splitIntoBranch:function(url) {
 
-    },
-    splitIntoBranch:function(url){
-        // if(this.state.session!=true)
-        // {
-        //     var loginModal = this.refs['loginModal'];
-        //     $(loginModal).modal('show');
-        // }else{
+
+        if (this.state.session != true) {
+            var loginModal = this.refs['loginModal'];
+            $(loginModal).modal('show');
+        } else {
             if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
             {
                 this.props.splitIntoBranch(url);
             }
-        //}
+
+
+        }
+
     },
     onClick: function (ob) {
         var url="/bsuims/bsMainFrameInit.do";
@@ -93,8 +73,7 @@ var MainPage=React.createClass({
             }.bind(this));
     },
     getInitialState:function(){
-
-        return ({session: false,accessToken:null});
+        return ({session: false});
     },
     render:function(){
         return(
@@ -111,14 +90,15 @@ var MainPage=React.createClass({
                             <li><a href="current.html" className="active">首页</a></li>
                             <li><a href="product-center.html"> 产品中心</a></li>
                             <li><a href="news.html">新闻资讯</a></li>
-                            <li><a href="about-us.html">关于我们</a></li>
                             <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
-                                <a href="javascript:void(0)">业务模块</a>
+                                <a href="javascript:void(0)">个人中心</a>
                             </li>
-                            <li><span onClick={this.onClick}>我的订单</span></li>
+                            <li className='cursor' onClick={this.onClick}>
+                                <a href="javascript:void(0)">业务咨询</a>
+                            </li>
+                            <li><a href="about-us.html">关于我们</a></li>
                         </ul>
                     </div>
-
                 </div>
 
                 <div style={{marginTop:'1px'}}>
@@ -128,7 +108,7 @@ var MainPage=React.createClass({
                 <div className='container' style={{position:'static'}}>
                     <div className='row'>
                         <div className="col-sm-4" style={{padding:'20px'}}>
-                            <div style={{textAlign:'center',padding:'10px',background:'#f2f9f7'}}>
+                            <div style={{textAlign:'center',padding:'10px',background:'url('+App.getResourceDeployPrefix()+'/images/background_1.png) no-repeat',backgroundSize:'100%'}}>
                                 <div style={{marginTop:'20px'}}>
                                     <h3>财产险</h3>
                                 </div>
@@ -189,7 +169,7 @@ var MainPage=React.createClass({
                 </div>
 
                 <div className='container' style={{position:'static',background:'#5e6d73',color: 'rgba(255, 255, 255, 0.7)'}}>
-                    <div className='row' style={{padding:'10px',textAlign:'center'}}>
+                    <div className='row' style={{padding:'10px',textAlign:'center',background:'url('+App.getResourceDeployPrefix()+'/images/problemBackground.png) no-repeat',backgroundSize:'100%'}}>
                         <div style={{marginTop:'30px'}}>
                             <h3>Contact us</h3>
                         </div>
