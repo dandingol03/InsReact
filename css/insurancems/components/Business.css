@@ -161,6 +161,11 @@
 }
 
 
+.pagination li {
+    float: left;
+    display: inline-block;
+}
+
 
 
 .content {
@@ -294,4 +299,5 @@
     line-height: 60px;
     color: #999;
     text-align: center;
+
 }

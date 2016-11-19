@@ -37,19 +37,17 @@ var MainPage=React.createClass({
         }
     }
     ,
-    splitIntoBranch:function(url){
+    splitIntoBranch:function(url) {
 
-        //if(this.state.session!=true)
-        //{
-        //    var loginModal = this.refs['loginModal'];
-        //    $(loginModal).modal('show');
-        //}
 
-            if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
-            {
-                this.props.splitIntoBranch(url);
-            }
-
+        // if (this.state.session != true) {
+        //     var loginModal = this.refs['loginModal'];
+        //     $(loginModal).modal('show');
+        // }
+        if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
+        {
+            this.props.splitIntoBranch(url);
+        }
 
     },
     onClick: function (ob) {
@@ -67,11 +65,9 @@ var MainPage=React.createClass({
             function(ob) {
 
             }.bind(this),
-
             function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        );
+            }.bind(this));
     },
     getInitialState:function(){
         return ({session: false});
@@ -94,7 +90,7 @@ var MainPage=React.createClass({
                             <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
                                 <a href="javascript:void(0)">个人中心</a>
                             </li>
-                            <li className='cursor' onClick={this.onClick}>
+                            <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
                                 <a href="javascript:void(0)">业务咨询</a>
                             </li>
                             <li><a href="about-us.html">关于我们</a></li>
@@ -259,11 +255,13 @@ var MainPage=React.createClass({
                             <div className="modal-body">
 
                                 <div className="form-group">
-                                    <input className="form-control" placeholder="用户名/手机号" type="text"/>
+                                    <input name="username" className="form-control" placeholder="用户名/手机号" type="text"/>
                                 </div>
                                 <div className="form-group" style={{position:'relative'}}>
-                                    <input className="form-control" placeholder="密码" type="text"/>
-                                    <span className='icon-right' onClick={this.validate} ><i className='icon-chevron-right'></i></span>
+                                    <input name="password" className="form-control" placeholder="密码" type="text"/>
+                                    <span className='icon-right' onClick={this.validate}>
+                                        <i className='icon-chevron-right'></i>
+                                    </span>
                                 </div>
 
                                 <div className="form-options clearfix">
