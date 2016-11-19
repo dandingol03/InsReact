@@ -1,0 +1,179 @@
+
+.Consultation{
+    padding: 0px;
+    margin: 0px;
+    background: #e8e8e8;
+}
+
+.search-area-wrapper {
+    background-size: 100%;
+    min-height: 279px;
+    height: auto !important;
+    height: 279px;
+    background: #353b65 url(../../../build/images/main-bg.jpg) center top no-repeat;
+
+}
+.search-area-wrapper .search-area {
+    padding: 50px 0;
+}
+
+.container {
+    position: absolute;
+    width: 100%;
+}
+h3.search-header {
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+}
+
+p.search-tag-line {
+    font-family: "Droid Serif", serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+}
+
+form.search-form {
+    margin: 40px 0 0;
+    text-align: center;
+}
+
+form.search-form .input-common, form.search-form input.search-term, form.search-form input.search-btn ,input.search-new{
+    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    box-shadow: none;
+    border-radius: 0;
+    display: inline-block;
+    border: none;
+    vertical-align: bottom;
+}
+form.search-form input.search-term {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 12px;
+    width: 72%;
+    color: #858c91;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+form.search-form input.search-term.loading {
+    background-repeat: no-repeat;
+    background-position: 98% 50%;
+}
+form.search-form input.search-btn {
+    background-color: #3f4b55;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 600;
+    padding: 14px 7px 15px;
+    color: #fff;
+    text-align: center;
+}
+.search-new{
+    background-color: #3f4b55;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 600;
+    padding: 14px 7px 15px;
+    color: #fff;
+    text-align: center;
+    margin-right: 21.7%;
+    margin-top: 22px;
+}
+form.search-form input.search-btn:hover {
+    background-color: #4b5760;
+}
+
+#search-error-container label {
+    color: #fff;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.lt-ie8 form.search-form input.search-btn {
+    padding-top: 12px;
+    padding-bottom: 13px;
+}
+
+.detail {
+    margin-top: 4px;
+    background-color: #fff;
+}
+.masthead {
+    background-color: #f1f1f1;
+    border-width: 1px 0;
+    border-color: #e3e3e3;
+    border-style: solid;
+    color: #999;
+}
+
+.detail .masthead li {
+    display: block;
+    float: left;
+    border-right: 1px solid #e3e3e3;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    overflow: hidden;
+}
+.detail .what {
+    float:left;
+    width:65%;
+    borderRight:1px solid #aaa;
+    textAlign:center;
+}
+.detail .who{
+    float:left;
+    width:15%;
+    borderRight:1px solid #aaa;
+    textAlign:center;
+}
+.detail .when{
+    float:left;
+    width:10%;
+    borderRight:1px solid #aaa;
+    textAlign:center;
+}
+.detail .details{
+    float:left;
+    width:10%;
+    borderRight:1px solid #aaa;
+    textAlign:center;
+}
+.detail .item-list {
+    margin-top: 12px;
+    border-top: 1px solid #f1f1f1;
+}
+.detail .item {
+    padding: 20px 0;
+    border-bottom: 1px solid;
+}
+.detail .item div {
+    float: left;
+    overflow: hidden;
+}
+.detail .what .theme {
+    display: block;
+    text-align: left;
+    padding: 20px;
+    margin-top: 1%;
+}
+
+.detail .item .who {
+    font-weight: 700;
+    line-height: 90px;
+    text-align: center;
+    color: #999;
+}
+.detail .item .when {
+    line-height: 90px;
+    color: #999;
+    text-align: center;
+}
+.detail .item .details {
+    line-height: 90px;
+    color: #999;
+    text-align: center;
+}

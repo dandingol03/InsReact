@@ -90,7 +90,7 @@ var MainPage=React.createClass({
                             <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
                                 <a href="javascript:void(0)">个人中心</a>
                             </li>
-                            <li className='cursor' onClick={this.splitIntoBranch.bind(this,'business')}>
+                            <li className='cursor' onClick={this.splitIntoBranch.bind(this,'consultation')}>
                                 <a href="javascript:void(0)">业务咨询</a>
                             </li>
                             <li><a href="about-us.html">关于我们</a></li>
