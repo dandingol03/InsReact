@@ -7,6 +7,9 @@ import TopComponent from '../component/TopComponent.jsx';
 import BottOmComponent from '../component/BottomComponent.jsx';
 import MainPage from '../modules/MainPage.jsx';
 import Business from '../modules/Business.jsx';
+import Consultation from '../modules/Consultation.jsx';
+import NewQuestion from '../modules/NewQuestion.jsx'
+
 
 
 /**
@@ -45,6 +48,10 @@ var Container=React.createClass({
             case 'business':
                 container=<Business/>;
                 break;
+            case 'consultation':
+                container=<Consultation splitIntoBranch={this.splitIntoBranch}/>;
+                break;
+
             default :
                 container=<div className='container'></div>;
                 break;
