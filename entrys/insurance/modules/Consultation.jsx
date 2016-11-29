@@ -7,15 +7,20 @@ import NewQuestion from '../modules/NewQuestion.jsx';
 var ProxyQ = require('../../../components/proxy/ProxyQ');
 import Calendar from './Calendar.jsx';
 var Page = require('../../../components/page/Page');
+var SyncStore = require('../../../components/flux/stores/SyncStore');
 import Navigator from './Navigator';
+
 var info={};
 
 var Consultation=React.createClass({
 
+
+
     Branch:function(branch){
         this.setState({nav: branch});
         this.initialData();
-        this.render();
+        this.getAllQuestion();
+
     },
     validate:function(){
         if(this.state.session!=true){
@@ -42,6 +47,8 @@ var Consultation=React.createClass({
                         var loginModal = this.refs['loginModal'];
                         $(loginModal).modal('hide');
                         window.setTimeout(this.goToOthers('newQuestion'), 300);
+                        SyncStore.setNote();
+
                     }
                 }.bind(this),
                 function(xhr, status, err) {
@@ -75,6 +82,7 @@ var Consultation=React.createClass({
             });
         }
     },
+
     getInitialState: function() {
         return {
 
@@ -83,7 +91,9 @@ var Consultation=React.createClass({
             startData:null,
             endDate:null,
             pageIndex:0,
-            value:null
+            value:null,
+            session:SyncStore.getNote(),
+            dataTg:1
 
 
         }
@@ -118,7 +128,7 @@ var Consultation=React.createClass({
                 break;
         }
     },
-    getQuestionContent:function(item,title){
+    getQuestionContent:function(item,title,personId,date,comments){
         var url="/insurance/insuranceReactPageDataRequest.do";
         var params={
             reactPageName:'insurancePersonalCenterProblemPage',
@@ -133,6 +143,7 @@ var Consultation=React.createClass({
             null,
             function(ob) {
                 info=ob;
+
                 this.state.nav='consultationDetails';
                 this.initialData();
 
@@ -143,6 +154,43 @@ var Consultation=React.createClass({
             }.bind(this)
         );
         this.state.title=title;
+        this.state.personId=personId;
+        this.state.date=date;
+        this.state.comments=comments;
+    },
+    setDataTg:function(){
+        this.state.dataTg=this.state.dataTg+1;
+        if(this.state.dataTg%2==0){
+            $('#lab5').attr('data-tg','只看自己');
+            this.getMyQuestion();
+        }else{
+            $('#lab5').attr('data-tg','全部');
+            this.getLimitQuestion();
+        }
+
+    },
+
+    getMyQuestion:function(){
+        var url="/insurance/insuranceReactPageDataRequest.do";
+        var params={
+            reactPageName:'insurancePersonalCenterProblemPage',
+            reactActionName:'getMyProblem',
+        };
+        ProxyQ.queryHandle(
+            'post',
+            url,
+            params,
+            null,
+            function(ob) {
+                info=ob;
+                this.state.nav=undefined;
+                this.initialData();
+            }.bind(this),
+
+            function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        );
     },
     getLimitQuestion:function(){
         var url="/insurance/insuranceReactPageDataRequest.do";
@@ -196,7 +244,7 @@ var Consultation=React.createClass({
     render:function(){
         var container=null;
         if(this.state.data!==undefined&&this.state.data!==null) {
-            if(this.state.nav!='consultationDetails') {
+            if(this.state.nav!='consultationDetails'&&this.state.nav!='newQuestion') {
                 var test = this.state.data;
                 var data = this.paginationData(test, this.state.pageIndex);
                 var trs = [];
@@ -217,7 +265,7 @@ var Consultation=React.createClass({
                                     + item.createTime.hours + ":" + item.createTime.minutes}
                                 </div>
                                 <div className="details"
-                                     onClick={ref.getQuestionContent.bind(this,item.themeId,item.title)}>
+                                     onClick={ref.getQuestionContent.bind(this,item.themeId,item.title,item.personId,item.createTime,item.readCount)}>
                                     <a href="javascript:void(0)"> 详情 </a>
                                 </div>
                             </li>
@@ -249,7 +297,7 @@ var Consultation=React.createClass({
                         </div>
                     break;
                 case 'consultationDetails':
-                    container = <ConsultationDetails data={info} title={this.state.title}/>;
+                    container = <ConsultationDetails data={info} title={this.state.title} personId={this.state.personId} date={this.state.date} comments={this.state.comments}Branch={this.Branch}/>;
                     break;
                 case 'newQuestion':
                     container =<NewQuestion  Branch={this.Branch}/>
@@ -264,18 +312,18 @@ var Consultation=React.createClass({
             navbar =
                 <div className='search-area-wrapper'>
                     <div className='search-area '>
-                        <h3 className='search-header'>Have a Question?</h3>
+                        <h3 className='search-header'>问题咨询</h3>
 
                         <p className='search-tag-line'>
-                            If you have any question you can ask below or enter what you are looking for!</p>
+                            如果您有任何问题，请在此进行查询或者提问！</p>
 
                         <form className='search-form clearfix' method="get" action="#">
                             <input className='search-term required' type="text"
-                                   placeholder="Type your search terms here"
+                                   placeholder="在此输入您的问题进行搜素！"
                                    title="* Please enter a search term!"
                                    onChange={this.onSaveInput.bind(this)}
                                 />
-                            <input className='search-btn' value="Search"
+                            <input className='search-btn' value="搜索"
                                    onClick={this.getLimitQuestion}/>
 
                             <div id="search-error-container"></div>
@@ -298,9 +346,17 @@ var Consultation=React.createClass({
                                     </div>
                                 </div>
                                 <div>
-                                    <input className='search-new' value="NEW Question"
+                                    <input className='search-new' value="新问题"
                                            onClick={this.goToOthers.bind(this,'newQuestion')}
                                         />
+                                    {SyncStore.getNote() ?
+                                        <span className='tg-list-item' style={{marginTeft:'34%', marginTop: '-2%'}}>
+                                        <input className='tgl tgl-flip' id='cb5' type='checkbox'/>
+                                            <label  style={{marginLeft: '35%', marginTop: '-2%'}}id='lab5'onClick={this.setDataTg} className='tgl-btn' data-tg='全部'data-tg-off='全部' data-tg-on='只看自己' htmlFor='cb5'></label>
+                                        </span>
+                                        :null}
+
+
                                 </div>
                             </div>
                         </form>
@@ -337,16 +393,12 @@ var Consultation=React.createClass({
                                 </div>
                                 <div className="form-group" style={{position:'relative'}}>
                                     <input className="form-control" name="password" placeholder="密码" type="text"/>
-                                    <span className='icon-right' onClick={this.validate} ><i className='icon-chevron-right'></i>
-                                    </span>
                                 </div>
                                 <div className="form-options clearfix">
-                                    <a className="pull-right" href="#">忘记密码了？</a>
-
-                                    <div className="text-left">
-                                        <span>自动登录</span>
-                                        <input type="checkbox"/>
-                                    </div>
+                                    <input className='search-new' value="登录"
+                                           onClick={this.validate}
+                                    />
+                                    <a className="pull-right" href="#" style={{marginTop:'42px'}}>忘记密码了？</a>
                                 </div>
 
                             </div>

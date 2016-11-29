@@ -21,6 +21,8 @@ var _devote=false;
 
 var _mustdone={};
 
+var _note=false;//登录状态
+
 
 
 
@@ -98,6 +100,13 @@ function cleanAll() {
 
 
 var SyncStore = assign({}, EventEmitter.prototype, {
+
+    getNote:function(){
+      return _note;
+    },
+    setNote:function(){
+      _note=true;
+    },
 
     getAll: function () {
         return _todos;
@@ -189,6 +198,12 @@ AppDispatcher.register(function (action) {
     var sync;
 
     switch (action.type) {
+        case SyncConstants.TODO_LOG:
+            SyncStore.setNote();
+            break;
+        case SyncConstants.GET_LOG:
+            SyncStore.getNote();
+            break;
         case SyncConstants.TODO_CREATE:
             sync = action.sync;
             if (sync !== '') {

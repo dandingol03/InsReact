@@ -58,8 +58,13 @@ var NewQuestion=React.createClass({
         //    $(loginModal).modal('show');
         //} else {
         if(this.props.Branch!==undefined&&this.props.Branch!==null)
+
         {
+            var successModal = this.refs['successModal'];
+            $(successModal).modal('hide');
             this.props.Branch(url);
+            //var state = store.get('loginState');
+
         }
         //}
 
@@ -68,16 +73,17 @@ var NewQuestion=React.createClass({
     render:function() {
         var container=null;
 
+
                 switch (this.state.nav) {
                     case 'main':
                         container=
                             <div>
                                 <div className='search-area-wrapper'>
                                     <div className='search-area '>
-                                        <h3 className='search-header'>Create a Question</h3>
+                                        <h3 className='search-header'>提出您的新问题</h3>
 
                                         <p className='search-tag-line'>
-                                            If you have any question you can write down and waiting for answer!
+                                            如果没有搜索到您需要的问题，请再次进行提问然后等待回答！
                                         </p>
                                     </div>
                                 </div>
@@ -87,11 +93,12 @@ var NewQuestion=React.createClass({
                                             <div className="span8 page-content">
                                                 <article className="type-page hentry clearfix">
                                                     <h1 className="post-title">
-                                                        <a href="#">Contact</a>
+                                                        <a href="#">您的问题</a>
                                                     </h1>
                                                     <hr></hr>
-                                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-                                                </article>
+                                                    <p>如果您在刚刚的搜索中没有找到与您问题相符的问题及解决方案，您可以在此提交您自己的问题，我们的客服人员将会在三到五个工作日之内对您的问题进行解答，敬请谅解！</p>
+                                                    <hr></hr>
+                                            </article>
                                                 <form  className="row"  method="post">
                                                     <div className="span2">
                                                         <label >问题/主题内容:<span>*</span> </label>
@@ -107,10 +114,22 @@ var NewQuestion=React.createClass({
                                                 </form>
                                             </div>
                                             <aside className="span4 page-sidebar">
-                                                <section className="widget">
+                                                <section className="widget" style={{position: 'fixed',marginLeft:'20%' ,height: '500px', width: '311px'}}>
                                                     <div className="support-widget">
-                                                        <h3 className="title">Support</h3>
-                                                        <p className="intro">Need more support? If you did not found an answer, contact us for further help.</p>
+                                                        <h3 className="title">业务支持</h3>
+                                                        <p className="intro"> 如果您需要更多的业务支持，请与我们的客服取得联系！</p>
+                                                        <hr/>
+                                                        <h3 className="title">客服电话:</h3>
+                                                        <p className="intro">231231</p>
+                                                        <h3 className="title">客服邮箱:</h3>
+                                                        <p className="intro">44444@163.com</p>
+                                                        <hr/>
+                                                        <h3 className="title">跳转支持</h3>
+                                                        <hr/>
+                                                        <a style={{cursor: 'pointer'}} onClick={this.Branch.bind(this,undefined)}>业务咨询</a>
+                                                        <hr/>
+                                                        <a style={{cursor: 'pointer'}} href=''>公司首页</a>
+                                                        <hr/>
                                                     </div>
                                                 </section>
                                             </aside>
@@ -133,8 +152,9 @@ var NewQuestion=React.createClass({
                                             <div className="modal-body">
                                                 <div className="form-group" style={{position:'relative'}}>
                                                     <div>{'问题已经提交，请耐心等待客服人员解答！'}</div>
-                                    <span className='icon-right' onClick={this.Branch.bind(this,'consultation')} ><i className='icon-chevron-right'></i>
-                                    </span>
+                                                    <input className='search-new' value="OK"
+                                                  onClick={this.Branch.bind(this,undefined)}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>

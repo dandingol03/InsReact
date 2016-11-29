@@ -7,6 +7,16 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var SyncConstants = require('../constants/SyncConstants');
 
 var SyncActions = {
+    login:function(){
+        AppDispatcher.dispatch({
+            type:SyncConstants.TODO_LOG
+        });
+    },
+    getNote:function(){
+        AppDispatcher.dispatch({
+            type:SyncConstants.GET_LOG
+        });
+    },
 
 
     create: function (ob) {

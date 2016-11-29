@@ -1,10 +1,12 @@
 import React from 'react';
 import {render} from 'react-dom';
-
+var ProxyQ = require('../../components/proxy/ProxyQ');
 /**
  * upload
  */
+var img=null;
 var Upload = React.createClass({
+
     clickCb          : function () {
         var $file = $(this.refs.file);
         $file.click();
@@ -20,9 +22,9 @@ var Upload = React.createClass({
                     <input type="hidden" name={this.props.ctrlName} ref="ctrl"/>
 
                     <div className="input-append">
-                        <input className="input" name="filename" type="text" ref="pathPreview"/>
-                        <a className="btn" onClick={this.clickCb}>
-                            <span style={{fontSize:"12px"}}>选择文件</span>
+                        <input className="input" style={{borderRadius: '4px',width: '352px'}} name="filename" type="text" ref="pathPreview"/>
+                        <a className="UploadBtn" style={{height: '33px',width: '75px',marginLeft: '78%',display: 'block',marginTop: '-5%'}} onClick={this.clickCb}>
+                            <span >选择文件</span>
                         </a>
                     </div>
                 </div>
@@ -37,17 +39,24 @@ var Upload = React.createClass({
         var $file = $(file);
         var $ctrl = $(this.refs.ctrl);
         var $pathPreview = $(this.refs.pathPreview);
+        var ref=this;
         $file.change(function () {
             $pathPreview.val($(this).val());
             if (window.FileReader) {
+
                 var source = file.files[0];
                 var fr = new FileReader();
                 fr.onloadend = function (e) {
                     $ctrl.val(e.target.result);
+                    img=$ctrl.val();
+                    if(ref.props.callbackParent!=null&&ref.props.callbackParent!=undefined)
+                        ref.props.callbackParent(img);
                 };
                 fr.readAsDataURL(source);
             }
+
         });
+
 
     }
 });
