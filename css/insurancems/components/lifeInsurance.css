@@ -4,7 +4,7 @@
 }
 
 .faqs-top-grids, .c-rooms {
-        background: #FFF;
+
         padding: 2em;
     }
     .banner-bottom{
@@ -225,7 +225,7 @@
     display: block;
 }
 .banner {
-    background: url(../../../build/images/banner.jpg) no-repeat 0px 0px;
+    background: url(../../../build/images/topPicture1.png) no-repeat 0px 0px;
     background-size: cover;
     padding-top: 2em;
     padding-bottom: 34em;
@@ -324,7 +324,7 @@
     transition: all 0.3s ease-out;
     font-weight: 600;
 }
-.date_btn form input[type="submit"] {
+.search {
     text-transform: capitalize;
     background: #6fd508;
     color: #FFFFFF;
@@ -335,6 +335,8 @@
     width: 147px;
     border-radius: 24px;
     margin-top: 16%;
+    text-align: center;
+    cursor: pointer;
 }
 .resp-tab-active {
     background: #6fd508;
@@ -429,6 +431,7 @@
 .business {
     background: #192C3B;
     padding: 2em 0em;
+    height: 175px;
 }
 .business h2 {
     font-size: 26px;
@@ -486,4 +489,31 @@
     font-family: 'Nunito', sans-serif;
     -webkit-transition: .5s all;
     box-shadow: 0px 2px 0px #604944;
+}
+.self{
+    height: 50px;
+    margin-top: 22px;
+}
+.selfp{
+    width:40%;
+    float:left;
+    text-align: end;
+}
+.selfSelect{
+    width: 18%;
+    float: left;
+    margin-top: 1px;
+    margin-left: 1em;
+    height: 2em;
+}
+.selfInput{
+    background: #6fd508;
+    color: #FFFFFF;
+    border: none;
+    width: 59px;
+    border-radius: 6px;
+    text-align: center;
+    margin-left: 8px;
+    margin-top: 1px;
+    cursor: pointer;
 }

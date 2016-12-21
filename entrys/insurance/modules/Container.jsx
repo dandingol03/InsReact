@@ -8,7 +8,7 @@ import BottOmComponent from '../component/BottomComponent.jsx';
 import MainPage from '../modules/MainPage.jsx';
 import Business from '../modules/Business.jsx';
 import Consultation from '../modules/Consultation.jsx';
-import ProductCenter from '../modules/ProductCenter.jsx';
+import Product from '../modules/Product.jsx';
 
 
 
@@ -51,8 +51,8 @@ var Container=React.createClass({
             case 'consultation':
                 container=<Consultation splitIntoBranch={this.splitIntoBranch}/>;
                 break;
-            case 'productCenter':
-                container=<ProductCenter splitIntoBranch={this.splitIntoBranch}/>;
+            case 'product':
+                container=<Product splitIntoBranch={this.splitIntoBranch}/>;
                 break;
 
             default :

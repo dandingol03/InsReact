@@ -5,7 +5,6 @@ var SyncStore = require('../../../components/flux/stores/SyncStore');
 import Calendar from './Calendar.jsx';
 var ProxyQ = require('../../../components/proxy/ProxyQ');
 import Upload from '../../../components/basic/Upload.jsx';
-var FileInput = require('../../../build/fileInput/src/fileInput');
 
 var ConsultationDetails=React.createClass({
 

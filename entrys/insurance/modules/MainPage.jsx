@@ -39,15 +39,17 @@ var MainPage=React.createClass({
     ,
     splitIntoBranch:function(url) {
 
-         //
+
          //if (this.state.session != true) {
          //    var loginModal = this.refs['loginModal'];
          //    $(loginModal).modal('show');
+         //}else{
+             if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
+         {
+             this.props.splitIntoBranch(url);
+         }
          //}
-        if(this.props.splitIntoBranch!==undefined&&this.props.splitIntoBranch!==null)
-        {
-            this.props.splitIntoBranch(url);
-        }
+
 
     },
     onClick: function (ob) {
@@ -85,7 +87,7 @@ var MainPage=React.createClass({
                     <div className='inline fright' style={{padding: '55px 0px 0px 10px'}}>
                         <ul>
                             <li><a href="current.html" className="active">首页</a></li>
-                            <li className='product-center'onClick={this.splitIntoBranch.bind(this,'productCenter')} >
+                            <li className='product-center'onClick={this.splitIntoBranch.bind(this,'product')} >
                                 <a href="javascript:void(0)"> 产品中心</a>
                             </li>
                             <li><a href="news.html">新闻资讯</a></li>
@@ -95,7 +97,9 @@ var MainPage=React.createClass({
                             <li className='cursor' onClick={this.splitIntoBranch.bind(this,'consultation')}>
                                 <a href="javascript:void(0)">业务咨询</a>
                             </li>
-                            <li><a href="about-us.html">关于我们</a></li>
+                            <li onClick={this.splitIntoBranch.bind(this,'')}>
+                                <a href="javascript:void(0)">关于我们</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -251,32 +255,24 @@ var MainPage=React.createClass({
                      aria-hidden="true"
                      ref='loginModal'
                     >
-                    <div className="modal fade bs-example-modal-sm login-container"
-                         tabIndex="-1"
-                         role="dialog"
-                         aria-labelledby="myLargeModalLabel"
-                         aria-hidden="true"
-                         ref='loginModal'
-                        >
-                        <div className="modal-dialog modal-sm" style={{position:'absolute',top:'30%',width:'50%',marginLeft:'25%'}}>
-                            <div className="modal-content" style={{position:'relative',width:'100%',padding:'40px'}}>
+                    <div className="modal-dialog modal-sm" style={{position:'absolute',top:'30%',width:'50%',marginLeft:'25%'}}>
+                        <div className="modal-content" style={{position:'relative',width:'100%',padding:'40px'}}>
 
-                                <div className="modal-body">
+                            <div className="modal-body">
 
-                                    <div className="form-group">
-                                        <input className="form-control" name="username" placeholder="用户名/手机号" type="text"/>
-                                    </div>
-                                    <div className="form-group" style={{position:'relative'}}>
-                                        <input className="form-control" name="password" placeholder="密码" type="text"/>
-                                    </div>
-                                    <div className="form-options clearfix">
-                                        <input className='search-new' value="登录"
-                                               onClick={this.validate}
-                                            />
-                                        <a className="pull-right" href="#" style={{marginTop:'42px'}}>忘记密码了？</a>
-                                    </div>
-
+                                <div className="form-group">
+                                    <input className="form-control" name="username" placeholder="用户名/手机号" type="text"/>
                                 </div>
+                                <div className="form-group" style={{position:'relative'}}>
+                                    <input className="form-control" name="password" placeholder="密码" type="text"/>
+                                </div>
+                                <div className="form-options clearfix">
+                                    <input className='search-new' value="登录"
+                                           onClick={this.validate}
+                                        />
+                                    <a className="pull-right" href="#" style={{marginTop:'42px'}}>忘记密码了？</a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
