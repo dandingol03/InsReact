@@ -7,6 +7,10 @@ var ProxyQ = require('../../../components/proxy/ProxyQ');
 
 var info=null;
 var LifeInsurance=React.createClass({
+    Branch:function(branch){
+        this.setState({nav: branch});
+
+    },
     getInitialState: function() {
         return {
             InputCompany:null,
@@ -25,11 +29,17 @@ var LifeInsurance=React.createClass({
         }.bind(this), 300);
 
     },
-    goToOthers:function(branch){
+    goToOthers:function(branch,num,name,star,briefly){
         //if (this.state.session != true) {
         //    var loginModal = this.refs['loginModal'];
         //    $(loginModal).modal('show');
         //} else {
+        if(num!==null){
+            this.state.propProductId=num;
+            this.state.propProductName=name;
+            this.state.propBriefly=briefly;
+            this.state.propStar=star;
+        }
         this.setState({
             nav: branch,
         });
@@ -109,9 +119,14 @@ var LifeInsurance=React.createClass({
         var selected=$('#lifeInsuranceType option:selected').val();
         this.state.selectLifeInsuranceType=selected;
     },
-    slidePage:function(){
-        var detail=this.refs.slider;
-        $(detail).animate({left:'-100%'});
+    slidePage:function(type){
+        if(type=='right'){
+            var detail=this.refs.slider;
+            $(detail).animate({left:'-100%'});
+        }else{
+            var detail=this.refs.slider;
+            $(detail).animate({left:'0'}); //使页面划回到最左边
+        }
     },
     onSaveInput:function(event){
 
@@ -199,6 +214,31 @@ var LifeInsurance=React.createClass({
             var data=this.state.data;
             var ref=this;
             data.map(function (item, i) {
+                var stars=[];
+                var star=parseInt(item.productStar);
+                for(var s=0;s<star;s++){
+                    stars.push(
+                        <span className="glyphicon glyphicon-star" ></span>
+                    )
+                }
+                var type=null;
+                switch (item.insuranceType){
+                    case '1':
+                        type="重疾险";
+                        break;
+                    case '2':
+                        type="意外险";
+                        break;
+                    case '3':
+                        type="养老险";
+                        break;
+                    case '4':
+                        type="理财险";
+                        break;
+                    case '5':
+                        type="医疗险";
+                        break;
+                }
                 lrs.push(
                     <div className="basic" key={i}>
                         <div className="business">
@@ -206,14 +246,16 @@ var LifeInsurance=React.createClass({
                             <p>{item.companyName}</p>
                         </div>
                         <div className="value">
-                            <p>19,99$</p>
+                            <p>
+                                {stars}
+                            </p>
                         </div>
                         <ul>
-                            <li><span>2-10年</span> 缴费期</li>
-                            <li><span>5-50万</span> 保额</li>
+                            <li>保额:<span>{item.insuranceQuota}</span></li>
+                            <li>险种类型:<span>{type}</span></li>
                         </ul>
                         <div className="buy-me">
-                            <a onClick={ref.goToOthers.bind(this,'detail')}style={{borderRight:'1px',borderStyle:'outset',borderRightColor:'currentColor'}}href="#">了解</a>
+                            <a onClick={ref.goToOthers.bind(this,'detail',item.productId,item.productName,item.productStar,item.briefly)}style={{borderRight:'1px',borderStyle:'outset',borderRightColor:'currentColor'}}href="#">了解</a>
                             <a style={{borderLeft:'1px',borderStyle:'outset',borderLeftColor:'currentColor'}}href="#">buy</a>
                         </div>
 
@@ -227,7 +269,7 @@ var LifeInsurance=React.createClass({
             case 'buy':
                 break;
             case 'detail':
-                container=<Detail/>
+                container=<Detail Branch={this.Branch} productId={this.state.propProductId} productName={this.state.propProductName} productStar={this.state.propStar} briefly={this.state.propBriefly}/>
                 break;
             case undefined:
                 container=
@@ -318,7 +360,7 @@ var LifeInsurance=React.createClass({
                                     </div>
                                 </div>
                                 <div className="col-md-8 banner-left" style={{    marginLeft: '91%', width: '15%',marginTop: '-16%',cursor:'pointer'}}>
-                                    <div className="sap_tabs" onClick={this.slidePage}style={{ width: '150px',height: '185px'}}>
+                                    <div className="sap_tabs" onClick={this.slidePage.bind(this,'right')}style={{ width: '150px',height: '185px'}}>
                                         <div className="booking-info"style={{width: '50%',float: 'left',marginTop: '-24%'}}>
                                             <h2>定制产品</h2>
                                         </div>
@@ -482,12 +524,20 @@ var LifeInsurance=React.createClass({
                     <div style={{display:'inline-block',top:'0px',width:'100%',position:'absolute',left:'100%'}}className="banner">
                         <div className="container" >
                             <div className="col-md-8 banner-right">
-                                <div className="sap_tabs">
-                                    <div className="booking-info">
-                                        <h2>填写您的需求与必要信息，以获取我们的推荐！</h2>
+
+                            </div>
+                            <div className="col-md-8 banner-left"  style={{    marginLeft: '-70%', width: '15%',cursor:'pointer',marginTop:'16em'}}>
+                                <div className="sap_tabs" onClick={this.slidePage.bind(this,'left')} style={{ width: '150px',height: '185px'}}>
+                                    <div style={{float: 'left',width: '50%',marginTop:'3em'}}>
+                                        <img src="images/navigate-left.png"/>
                                     </div>
+                                    <div className="booking-info"style={{width: '50%',float: 'left',marginTop: '22%'}}>
+                                    <h2>返回</h2>
+                                </div>
+
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div className="banner-bottom" style={{display:'inline-block',top: '36em',width:'100%',position:'absolute',left:'100%'}}>
